@@ -2,10 +2,10 @@ var tasks = [];
 
 document.getElementById("add-btn").onclick = function () {
   var taskInput = document.getElementById("task-input");
-  var taskText = taskInput.value.trim();
+  var taskText = taskInput.value;
 
-  if (taskText === "") {
-    alert("Please enter a task!");
+  if (taskText === "" || taskText === " ") {
+    alert("Please enter a valid task!");
     return;
   }
 
@@ -68,8 +68,8 @@ function renderTasks() {
 
 function editTask(index) {
   var newTask = prompt("Edit your task:", tasks[index]);
-  if (newTask !== null && newTask.trim() !== "") {
-    tasks[index] = newTask.trim();
+  if (newTask !== null && newTask !== "") {
+    tasks[index] = newTask;
     renderTasks();
   }
 }
