@@ -75,10 +75,31 @@ function editTask(index) {
 }
 
 function markCompleted(index) {
+  var completedTasks = JSON.parse(localStorage.getItem("completedTasks")) || [];
+  completedTasks.push(tasks[index]);
+  localStorage.setItem("completedTasks", JSON.stringify(completedTasks));
   alert("Task Completed: " + tasks[index]);
+  deleteTask(index);
 }
 
 function deleteTask(index) {
   tasks.splice(index, 1);
   renderTasks();
+}
+
+function renderCompletedTasks() {
+  var completedTaskList = document.getElementById("completed-task-list");
+  completedTaskList.innerHTML = "";
+
+  var completedTasks = JSON.parse(localStorage.getItem("completedTasks")) || [];
+  for (var i = 0; i < completedTasks.length; i++) {
+    var taskItem = document.createElement("div");
+    taskItem.className = "completed-item";
+
+    var taskText = document.createElement("span");
+    taskText.textContent = completedTasks[i];
+
+    taskItem.appendChild(taskText);
+    completedTaskList.appendChild(taskItem);
+  }
 }
