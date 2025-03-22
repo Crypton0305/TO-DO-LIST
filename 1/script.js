@@ -102,4 +102,4 @@ function renderCompletedTasks() {
     taskItem.appendChild(taskText);
     completedTaskList.appendChild(taskItem);
   }
-}
+} 
